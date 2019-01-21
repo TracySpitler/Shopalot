@@ -1,0 +1,19 @@
+{
+  "name": "shopalot",
+  "version": "1.0.0",
+  "description": "An open-source shopping cart application.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TracySpitler/Shopalot.git"
+  },
+  "author": "The Codéteers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TracySpitler/Shopalot/issues"
+  },
+  "homepage": "https://github.com/TracySpitler/Shopalot#readme"
+}
