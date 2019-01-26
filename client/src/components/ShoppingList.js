@@ -46,7 +46,7 @@ class ShoppingList extends Component{
                                     onClick={() => {
                                         this.setState(state => ({
                                             //item by id is filtered out here (deleted)
-                                            items: state.items.filter(item => item.id != id)
+                                            items: state.items.filter(item => item.id !== id)
                                         }));
                                     }}
                                 >&times;</Button>
