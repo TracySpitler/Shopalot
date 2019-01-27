@@ -4,7 +4,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 
 class ShoppingList extends Component{
   // load the list from store.js
@@ -23,18 +22,6 @@ class ShoppingList extends Component{
         return (
 
             <Container>
-                <Button
-                    color="dark"
-                    style={{marginBottom: '2rem'}}
-                    onClick={() =>{
-                        const name = prompt('Enter Item');
-                        if(name){
-                            this.setState(state => ({
-                                items: [...state.items, { id: uuid(), name }]
-                            }));
-                        }
-                    }}
-                >Add Item</Button>
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
                         {items.map(({ id, name}) =>
