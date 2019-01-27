@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 
+// action to GET_ITEMS from the server
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
   axios
@@ -8,6 +9,7 @@ export const getItems = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_ITEMS,
+        // send all items
         payload: res.data
       })
     )
@@ -21,14 +23,20 @@ export const deleteItem = (id) => {
   };
 };
 
-export const addItem = (item) => {
-  return {
-    type: ADD_ITEM,
-    // send the item
-    payload: item
-  };
+// action to ADD_ITEM to the server
+export const addItem = (item) => dispatch => {
+  axios
+    .post('/api/items', item)
+    .then(res =>
+      dispatch({
+        type: ADD_ITEM,
+        // send the added item
+        payload: res.data
+      })
+    )
 };
 
+// action to set the ITEMS_LOADING state
 export const setItemsLoading = () => {
   return {
     type: ITEMS_LOADING,
