@@ -51,8 +51,8 @@ class ShoppingList extends Component{
 }
 
 ShoppingList.propTypes = {
-  getItems: PropTypes.func,
-  item: PropTypes.object
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
