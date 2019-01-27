@@ -8,7 +8,7 @@ class Splash extends Component{
       <Background>
         <Cta className="container">
           <h1>Shopalot</h1>
-          <p>Who said shopping couldn't be easy?</p>
+          <p>Who said shopping couldn&#39;t be easy?</p>
           <p>Experience the best way to shop, fast. </p>
           <button>Get Started</button>
         </Cta>
