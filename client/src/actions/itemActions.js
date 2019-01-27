@@ -1,6 +1,7 @@
-import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM } from './types';
+import axios from 'axios';
+import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 
-export const getItems = () => {
+export const getItems = () => dispatch => {
   return {
     type: GET_ITEMS
   };
@@ -19,5 +20,11 @@ export const addItem = (item) => {
     type: ADD_ITEM,
     // send the item
     payload: item
+  };
+};
+
+export const setItemsLoading = () => {
+  return {
+    type: ITEMS_LOADING,
   };
 };
