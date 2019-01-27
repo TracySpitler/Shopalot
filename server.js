@@ -13,9 +13,6 @@ app.use(bodyParser.json());
 const db = require('./config/mongoose');
 
 // routes
-//const index = require('./routes/index');
-//app.use('/', index);
-
 const items = require('./routes/api/items');
 app.use('/api/items', items);
 
