@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router} from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
+import Routes from './Routes';
 import ShoppingList from './components/ShoppingList';
 import ItemModal from './components/ItemModal';
 import { Container } from 'reactstrap';
@@ -15,12 +17,12 @@ class App extends Component {
     return (
       <Provider store={store}>
       <div className="App">
+
         <AppNavbar />
 
-        <Container>
-          <ItemModal />
-          <ShoppingList />
-        </Container>
+        <Router>
+           <Routes />
+        </Router>
         
       </div>
       </Provider>
