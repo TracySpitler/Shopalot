@@ -1,3 +1,4 @@
+// Item Schema
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -8,12 +9,17 @@ const ItemSchema = new Schema({
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
-    }
-
-
+    price: {
+        type: Number,
+        required: true,
+    },
+    imagePath: {
+        type: String,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);
