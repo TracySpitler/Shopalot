@@ -13,6 +13,10 @@ app.use(bodyParser.json());
 // connect to the database
 const db = require('./config/mongoose');
 
+// routes
+const items = require('./routes/api/items');
+app.use('/api/items', items);
+
 // serve static assets (build) if in production
 if (process.env.NODE_ENV === 'production') {
   // set static folder
@@ -23,10 +27,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-// routes
-const items = require('./routes/api/items');
-app.use('/api/items', items);
 
 // export the app
 module.exports = app;
