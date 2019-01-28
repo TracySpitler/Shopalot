@@ -20,7 +20,7 @@ class ShoppingList extends Component{
 
     render(){
 
-        const { items } = [this.props.item];
+        const { items } = this.props.item;
         return (
 
             <Container>
@@ -39,8 +39,7 @@ class ShoppingList extends Component{
                                       size="sm"
                                       onClick={this.onDeleteClick.bind(this, _id)}
                                   >&times;</Button>
-                                  {name}
-                                  </ListGroupItem>
+                                  {name}</ListGroupItem>
                               </CSSTransition>
                           ))}
                       </TransitionGroup>
