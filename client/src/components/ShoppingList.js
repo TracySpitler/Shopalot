@@ -18,7 +18,6 @@ class ShoppingList extends Component{
     this.props.deleteItem(id);
   }
 
-<<<<<<< HEAD
   render(){
 
     const { items } = this.props.item;
@@ -52,42 +51,6 @@ class ShoppingList extends Component{
       </Container>
     );
   }
-=======
-    render(){
-
-        const { items } = this.props.item;
-
-        return (
-
-            <Container>
-
-                <ItemModal />
-
-
-                <ListGroup>
-                    <TransitionGroup className="shopping-list">
-                    {items.map(({_id, name}) => (
-                        <CSSTransition key={_id} timeout={500} classNames="fade">
-                            <ListGroupItem>
-                            <Button
-                                className="remove-btn"
-                                color="danger"
-                                size="sm"
-                                onClick={this.onDeleteClick.bind(this, _id)}
-                            >&times;</Button>
-                            {name}</ListGroupItem>
-                        </CSSTransition>
-                    ))}
-
-                    </TransitionGroup>
-                </ListGroup>
-
-            </Container>
-
-        );
-
-    }
->>>>>>> fad59f7c4dcd1275267582f02311a2726acbab4b
 }
 
 ShoppingList.propTypes = {
