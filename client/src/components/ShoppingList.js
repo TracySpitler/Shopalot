@@ -21,6 +21,7 @@ class ShoppingList extends Component{
     render(){
 
         const { items } = this.props.item;
+
         return (
 
             <Container>
@@ -29,18 +30,9 @@ class ShoppingList extends Component{
 
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
-                        {items.map(({_id, name}) => (
-                            <CSSTransition key={_id} timeout={500} classNames="fade">
-                                <ListGroupItem>
-                                <Button
-                                    className="remove-btn"
-                                    color="danger"
-                                    size="sm"
-                                    onClick={this.onDeleteClick.bind(this, _id)}
-                                >&times;</Button>
-                                {name}</ListGroupItem>
-                            </CSSTransition>
-                        ))}
+                        {items.map(({_id, name}) =>
+                          <h1>{name}</h1>)}
+
                     </TransitionGroup>
                 </ListGroup>
 
