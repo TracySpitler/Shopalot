@@ -20,17 +20,25 @@ class ShoppingList extends Component{
 
     render(){
 
-        const { items = [] } = this.props.item;
+        const { items } = this.props.item;
+        const listItems = items.map((item) =>
+          <li>{item}</li>
+        );
+        var arr = [];
+        for (var key in items) {
+          arr.push(items[key]);
+        }
 
         return (
 
             <Container>
 
                 <ItemModal />
+                
 
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
-                    {items.map(({_id, name}) => (
+                    {arr.map(({_id, name}) => (
                         <CSSTransition key={_id} timeout={500} classNames="fade">
                             <ListGroupItem>
                             <Button
@@ -49,6 +57,7 @@ class ShoppingList extends Component{
             </Container>
 
         );
+
     }
 }
 
