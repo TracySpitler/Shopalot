@@ -9,10 +9,9 @@ const Item = require('../../models/Item');
 // @access Public
 router.get('/', (req, res) => {
 
-    Item.find()
-        .sort({ date: -1 })
-        .then(items => res.json(items));
-
+  Item.find()
+    .sort({ date: -1 })
+    .then(items => res.json(items));
 });
 
 // @route POST api/items
@@ -20,14 +19,14 @@ router.get('/', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
 
-    const newItem = new Item({
+  const newItem = new Item({
+    name: req.body.name,
+    price: req.body.price,
+    imagePath: req.body.imagePath,
+    description: req.body.description
+  });
 
-        name: req.body.name
-
-    });
-
-    newItem.save().then(item => res.json(item));
-
+  newItem.save().then(item => res.json(item));
 });
 
 // @route DELETE api/items
@@ -35,12 +34,10 @@ router.post('/', (req, res) => {
 // @access Public
 router.delete('/:id', (req, res) => {
 
-    Item.findById(req.params.id)
-    //Callback returns a successful or unsuccessful item deletion
-        .then(item => item.remove().then(() => res.json({success: "Item deleted successfully"})))
-        .catch(err => res.status(404).json({error: "Error when deleting item"}));
+  Item.findById(req.params.id)
+    // Callback returns a successful or unsuccessful item deletion
+    .then(item => item.remove().then(() => res.json({success: "Item deleted successfully"})))
+    .catch(err => res.status(404).json({error: "Error when deleting item"}));
 })
-
-
 
 module.exports = router;
