@@ -27,26 +27,22 @@ class ShoppingList extends Component{
 
                 <ItemModal />
 
-                {items ? (
-                  <ListGroup>
-                      <TransitionGroup className="shopping-list">
-                          {items.map(({_id, name}) => (
-                              <CSSTransition key={_id} timeout={500} classNames="fade">
-                                  <ListGroupItem>
-                                  <Button
-                                      className="remove-btn"
-                                      color="danger"
-                                      size="sm"
-                                      onClick={this.onDeleteClick.bind(this, _id)}
-                                  >&times;</Button>
-                                  {name}</ListGroupItem>
-                              </CSSTransition>
-                          ))}
-                      </TransitionGroup>
-                  </ListGroup>
-                ) : (
-                  <h3>No Items</h3>
-                )}
+                <ListGroup>
+                    <TransitionGroup className="shopping-list">
+                        {items.map(({_id, name}) => (
+                            <CSSTransition key={_id} timeout={500} classNames="fade">
+                                <ListGroupItem>
+                                <Button
+                                    className="remove-btn"
+                                    color="danger"
+                                    size="sm"
+                                    onClick={this.onDeleteClick.bind(this, _id)}
+                                >&times;</Button>
+                                {name}</ListGroupItem>
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
+                </ListGroup>
 
             </Container>
 
