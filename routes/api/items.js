@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Item Model
-const Item = require('../../models/Item');
+const Item = require('../../models/item');
 
 // @route GET api/items
 // @desc Get All Items
@@ -40,4 +40,9 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({error: "Error when deleting item"}));
 })
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> fad59f7c4dcd1275267582f02311a2726acbab4b
 module.exports = router;
