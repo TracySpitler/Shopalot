@@ -29,7 +29,7 @@ class ShoppingList extends Component{
 
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
-                        {items.map(({_id, name}) =>
+                        {items.map(({_id, name}) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
                                 <Button
@@ -38,7 +38,8 @@ class ShoppingList extends Component{
                                     size="sm"
                                     onClick={this.onDeleteClick.bind(this, _id)}
                                 >&times;</Button>
-                                {name}</ListGroupItem>
+                                {name}
+                                </ListGroupItem>
                             </CSSTransition>
                         ))}
                     </TransitionGroup>
