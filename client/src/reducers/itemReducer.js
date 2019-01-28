@@ -1,7 +1,11 @@
+import uuid from 'uuid';
 import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
 
 const initialState = {
-  items: [],
+  items: [
+    { _id: uuid(), name: 'iPhone X' },
+    { _id: uuid(), name: 'MacBook Pro' },
+  ],
   loading: false
 };
 
