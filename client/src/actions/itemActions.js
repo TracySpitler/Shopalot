@@ -4,8 +4,10 @@ import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 // action to GET_ITEMS from the server
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
-  axios.get('/api/items').then(res =>
-    dispatch({
+  axios
+    .get('/api/items')
+    .then(res =>
+      dispatch({
         type: GET_ITEMS,
         // send all items
         payload: res.data
