@@ -20,7 +20,7 @@ class ShoppingList extends Component{
 
     render(){
 
-        const { items } = this.props.item;
+        const { items = [] } = this.props.item;
 
         return (
 
