@@ -34,11 +34,11 @@ class ShoppingList extends Component{
             <Container>
 
                 <ItemModal />
-                
+
 
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
-                    {arr.map(({_id, name}) => (
+                    {arr.map((_id, name) => (
                         <CSSTransition key={_id} timeout={500} classNames="fade">
                             <ListGroupItem>
                             <Button
