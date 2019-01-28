@@ -23,24 +23,29 @@ class ShoppingList extends Component{
         const { items } = this.props.item;
         return (
 
-          <ItemModal />
+            <Container>
+                <ItemModal />
 
-          <ListGroup>
-              <TransitionGroup className="shopping-list">
-                  {items.map(({_id, name}) => (
-                      <CSSTransition key={_id} timeout={500} classNames="fade">
-                          <ListGroupItem>
-                          <Button
-                              className="remove-btn"
-                              color="danger"
-                              size="sm"
-                              onClick={this.onDeleteClick.bind(this, _id)}
-                          >&times;</Button>
-                          {name}</ListGroupItem>
-                      </CSSTransition>
-                  ))}
-              </TransitionGroup>
-          </ListGroup>
+                <Container>
+
+                  <ListGroup>
+                      <TransitionGroup className="shopping-list">
+                          {items.map(({_id, name}) => (
+                              <CSSTransition key={_id} timeout={500} classNames="fade">
+                                  <ListGroupItem>
+                                  <Button
+                                      className="remove-btn"
+                                      color="danger"
+                                      size="sm"
+                                      onClick={this.onDeleteClick.bind(this, _id)}
+                                  >&times;</Button>
+                                  {name}</ListGroupItem>
+                              </CSSTransition>
+                          ))}
+                      </TransitionGroup>
+                  </ListGroup>
+                </Container>
+            </Container>
 
         );
     }
