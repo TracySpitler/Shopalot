@@ -21,13 +21,6 @@ class ShoppingList extends Component{
     render(){
 
         const { items } = this.props.item;
-        const listItems = items.map((item) =>
-          <li>{item}</li>
-        );
-        var arr = [];
-        for (var key in items) {
-          arr.push(items[key]);
-        }
 
         return (
 
@@ -38,7 +31,7 @@ class ShoppingList extends Component{
 
                 <ListGroup>
                     <TransitionGroup className="shopping-list">
-                    {arr.map((_id, name) => (
+                    {items.map(({_id, name}) => (
                         <CSSTransition key={_id} timeout={500} classNames="fade">
                             <ListGroupItem>
                             <Button
