@@ -70,7 +70,7 @@ _.env_
 
 ```
 MONGO_HOST=localhost
-MONGO_DATABASE=setlist
+MONGO_DATABASE=shopalot
 ```
 
 Get the code up and running
