@@ -73,9 +73,9 @@ MONGO_HOST=localhost
 MONGO_DATABASE=setlist
 ```
 
-Start the server
+Get the code up and running
 
-**_with Nodemon:_**
+**_With Nodemon (server only):_**
 
 ```
 $ nodemon bin/www
@@ -89,25 +89,54 @@ your@computer:~$ nodemon bin/www
 [nodemon] to restart at any time, enter `rs`
 [nodemon] watching: *.*
 [nodemon] starting `node bin/www`
-Server running on: 3000
+Server running on: 5000
 DATABASE CONNECTED SUCCESSFULLY
 ```
 
-**_with NPM:_**
+**_Run Congruently (client & server):_**
 
 ```
-$ npm start
+$ npm run dev
 ```
 
 _Terminal output:_
 
 ```
-your@computer:~$ npm start
-Server running on: 3000
+your@computer:~$ npm run dev
+
+> shopalot@1.0.0 dev /your/directory/Shopalot
+> concurrently "npm run server" "npm run client"
+
+> shopalot@1.0.0 server /your/directory/Shopalot
+> nodemon bin/www
+
+> shopalot@1.0.0 client /your/directory/Shopalot
+> npm start --prefix client
+
+> client@0.1.0 start /your/directory/Shopalot
+> react-scripts start
+
+[nodemon] 1.18.9
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node bin/www`
+Server running on: 5000
 DATABASE CONNECTED SUCCESSFULLY
+Starting the development server...
+
+Compiled successfully!
+
+You can now view client in the browser.
+
+Local:            http://localhost:3000/
+On Your Network:  http://192.168.1.4:3000/
 ```
 
-__The site is now available in your browser at localhost:3000__
+__The site is now available for view in your browser at localhost:3000__
+__The server is connected to localhost:5000__
+
+_End points:_
+* /api/items
 
 ## Live Deployment with Heroku
 
