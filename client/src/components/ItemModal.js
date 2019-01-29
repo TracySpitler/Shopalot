@@ -42,8 +42,10 @@ class ItemModal extends Component {
       description: this.state.description,
     };
 
+    console.log("image:" + this.state.imagePath);
+
     // add item via addItem action
-    this.props.addItem(newItem);
+    //this.props.addItem(newItem);
 
     // close modal
     this.toggle();
