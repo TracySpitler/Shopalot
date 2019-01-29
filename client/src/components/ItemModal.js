@@ -35,10 +35,15 @@ class ItemModal extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
+    var img;
+    if (this.state.imagePath) {
+      img = this.state.imagePath
+    }
+
     const newItem = {
       name: this.state.name,
       price: this.state.price,
-      imagePath: this.state.imagePath,
+      imagePath: img,
       description: this.state.description,
     };
 
