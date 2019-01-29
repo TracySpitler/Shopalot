@@ -12,7 +12,7 @@ export const getItems = () => dispatch => {
         // send all items
         payload: res.data
       })
-    )
+    );
 };
 
 // action to DELETE_ITEM from the server by _id
@@ -25,7 +25,7 @@ export const deleteItem = (id) => dispatch => {
         // send the id
         payload: id
       })
-    )
+    );
 };
 
 // action to ADD_ITEM to the server
@@ -38,7 +38,7 @@ export const addItem = (item) => dispatch => {
         // send the added item
         payload: res.data
       })
-    )
+    );
 };
 
 // action to set the ITEMS_LOADING state
