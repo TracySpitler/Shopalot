@@ -35,22 +35,18 @@ class ItemModal extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    var img;
-    if (this.state.imagePath) {
-      img = this.state.imagePath
-    }
-
     const newItem = {
       name: this.state.name,
       price: this.state.price,
-      imagePath: img,
+      imagePath: this.state.imagePath,
       description: this.state.description,
     };
 
-    console.log("image:" + this.state.imagePath);
-
     // add item via addItem action
-    //this.props.addItem(newItem);
+    this.props.addItem(newItem);
+
+    // reset default image
+    this.state.imagePath = 'https://www.bestfunnies.com/wp-content/uploads/2012/10/Funny-Shopping-01.jpg';
 
     // close modal
     this.toggle();
@@ -74,7 +70,7 @@ class ItemModal extends Component {
           </ModalHeader>
 
           <ModalBody>
-            <Form onSubmit={this.onSubmit}>
+            <Form id="add-item-form" onSubmit={this.onSubmit}>
               {/* Item Name */}
               <FormGroup>
                 <Label for="name">Item Name</Label>
