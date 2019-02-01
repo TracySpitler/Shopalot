@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.remove-btn{
+  margin-right: 0.5rem;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
+/* CSS for NotFound.js */
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+img.404 {
+  width: 100%;
+  height: auto;
+}
+
+.home-btn {
+  position: absolute;
+  top: 70%;
+  left: 7%;
+  background-color: #350074;
+  color: #FFF !important;
+  padding: .5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.home-btn:hover {
+  background-color: black;
+}
+
+.home-btn a {
+  color: #FFF !important;
+  text-decoration: none;
+}
