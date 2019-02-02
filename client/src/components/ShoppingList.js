@@ -18,40 +18,39 @@ class ShoppingList extends Component{
     this.props.deleteItem(id);
   }
 
-    render(){
+  render(){
 
-        const { items } = this.props.item;
+    const { items } = this.props.item;
+    return (
 
-        return (
+      <Container>
+        <ItemModal />
 
-            <Container>
+        <ListGroup>
+          <TransitionGroup className="shopping-list">
+            {items.map(({_id, name, price, description, imagePath}) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade">
+                <ListGroupItem>
+                  <Button
+                    className="remove-btn"
+                    color="danger"
+                    size="sm"
+                    onClick={this.onDeleteClick.bind(this, _id)}
+                  >&times;</Button>
+                  {name}
+                  <p></p>
+                  <p>Price: ${price}</p>
+                  <p>Description: {description}</p>
+                  <img src={imagePath} alt={name} style={{maxWidth: '30vw'}}/>
+                </ListGroupItem>
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+        </ListGroup>
 
-                <ItemModal />
-
-
-                <ListGroup>
-                    <TransitionGroup className="shopping-list">
-                    {items.map(({_id, name}) => (
-                        <CSSTransition key={_id} timeout={500} classNames="fade">
-                            <ListGroupItem>
-                            <Button
-                                className="remove-btn"
-                                color="danger"
-                                size="sm"
-                                onClick={this.onDeleteClick.bind(this, _id)}
-                            >&times;</Button>
-                            {name}</ListGroupItem>
-                        </CSSTransition>
-                    ))}
-
-                    </TransitionGroup>
-                </ListGroup>
-
-            </Container>
-
-        );
-
-    }
+      </Container>
+    );
+  }
 }
 
 ShoppingList.propTypes = {
