@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import Login from './views/Login';
 import Splash from './views/Splash';
+import Signup from './views/Sign-Up';
 import ShoppingList from './components/ShoppingList';
 import NotFound from './components/NotFound'
 
