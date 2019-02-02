@@ -192,7 +192,7 @@ const UserSession = require('../../models/UserSession');
                 });
             } else{
                 return res.send({
-                    success: false,
+                    success: true,
                     message: 'Successful Verification!'
                 });
 
@@ -201,6 +201,41 @@ const UserSession = require('../../models/UserSession');
         
     });
 
-    
+    /**
+     * Logout
+     */
+    router.get('/logout', (req, res, next)=>{
+        // Get the token
+        const { query } = req;
+        const { token } = query;
+        //?token=test
+        // Verify the token is one of a kind and it's not deleted
+
+        UserSession.findOneAndUpdate({
+            _id: token,
+            isDeleted: false
+        }, 
+        {
+            $set:{
+                
+                isDeleted:true
+            }
+
+        }, null, (err, sessions) =>{
+            if(err){
+                return res.send({
+                    success: false,
+                    message: 'Error: Server error'
+                });
+            }
+
+            return res.send({
+               success: true,
+               message: 'Successful Logout!'
+            });
+
+            
+        });
+    });
 
      module.exports = router;
