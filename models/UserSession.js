@@ -16,7 +16,7 @@ const UserSessionSchema = new Schema({
         type: Boolean,
         default: false
     },
-    
+
 
 
 });

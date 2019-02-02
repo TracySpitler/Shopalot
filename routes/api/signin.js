@@ -10,7 +10,7 @@ const UserSession = require('../../models/UserSession');
 
      router.post('/signup', (req, res, next) =>{
          const { body } = req;
-         const { 
+         const {
              firstName,
              lastName,
              password
@@ -94,7 +94,7 @@ const UserSession = require('../../models/UserSession');
 
      router.post('/signin', (req, res, next) =>{
         const { body } = req;
-        const { 
+        const {
             password
         } = body;
         let{
@@ -198,7 +198,7 @@ const UserSession = require('../../models/UserSession');
 
             }
         });
-        
+
     });
 
     /**
@@ -214,10 +214,10 @@ const UserSession = require('../../models/UserSession');
         UserSession.findOneAndUpdate({
             _id: token,
             isDeleted: false
-        }, 
+        },
         {
             $set:{
-                
+
                 isDeleted:true
             }
 
@@ -234,7 +234,7 @@ const UserSession = require('../../models/UserSession');
                message: 'Successful Logout!'
             });
 
-            
+
         });
     });
 
