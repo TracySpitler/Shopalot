@@ -36,11 +36,17 @@ class ItemModal extends Component {
     e.preventDefault();
 
     const newItem = {
-      name: this.state.name
+      name: this.state.name,
+      price: this.state.price,
+      imagePath: this.state.imagePath,
+      description: this.state.description,
     };
 
     // add item via addItem action
     this.props.addItem(newItem);
+
+    // reset default image
+    this.setState({ imagePath: 'https://www.bestfunnies.com/wp-content/uploads/2012/10/Funny-Shopping-01.jpg' })
 
     // close modal
     this.toggle();
@@ -64,21 +70,60 @@ class ItemModal extends Component {
           </ModalHeader>
 
           <ModalBody>
-            <Form onSubmit={this.onSubmit}>
+            <Form id="add-item-form" onSubmit={this.onSubmit}>
+              {/* Item Name */}
               <FormGroup>
-                <Label for="item">Item</Label>
+                <Label for="name">Item Name</Label>
                 <Input
                   type="text"
                   name="name"
-                  id="item"
-                  placeholder="Add Shopping Item"
-                  onChange={this.onChange}
+                  id="name"
+                  placeholder="iPhone X"
+                  onChange={this.onChange.bind(this)}
                 />
-                <Button
-                  color="dark"
-                  style={{marginTop: '2rem'}} block
-                >Add Item</Button>
               </FormGroup>
+
+              {/* Price */}
+              <FormGroup>
+                <Label for="price">Price</Label>
+                <Input
+                  type="number"
+                  name="price"
+                  id="price"
+                  placeholder="749"
+                  onChange={this.onChange.bind(this)}
+                />
+              </FormGroup>
+
+              {/* Image Path */}
+              <FormGroup>
+                <Label for="imagePath">Image URL</Label>
+                <Input
+                  type="text"
+                  name="imagePath"
+                  id="imagePath"
+                  placeholder="https://someurl.com"
+                  onChange={this.onChange.bind(this)}
+                />
+              </FormGroup>
+
+              {/* Description */}
+              <FormGroup>
+                <Label for="description">Description</Label>
+                <Input
+                  type="textarea"
+                  name="description"
+                  id="description"
+                  placeholder="Product Description"
+                  onChange={this.onChange.bind(this)}
+                />
+              </FormGroup>
+
+              <Button
+                color="dark"
+                style={{marginTop: '2rem'}} block
+              >Add Item</Button>
+
             </Form>
           </ModalBody>
 
@@ -86,7 +131,6 @@ class ItemModal extends Component {
       </div>
     );
   }
-
 }
 
 const mapStateToProps = (state) => ({
