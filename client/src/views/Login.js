@@ -37,7 +37,7 @@ class Login extends Component{
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           />
-          
+
           <button>Login with Email</button>
           <p>Don't have a login?</p>
           <a href="/signup">Sign up with us!</a>

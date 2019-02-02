@@ -31,7 +31,7 @@ class Signup extends Component{
 		return (
       <Background>
         <Cta className="container">
-          
+
           <button>Sign-Up</button>
         </Cta>
       </Background>
