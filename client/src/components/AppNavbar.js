@@ -34,6 +34,11 @@ class AppNavbar extends Component {
                   Github
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/login">
+                  Log in / Sign up
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Container>
