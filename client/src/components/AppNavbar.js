@@ -36,7 +36,7 @@ class AppNavbar extends Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/login">
-                  Login
+                  Log in / Sign up
                 </NavLink>
               </NavItem>
             </Nav>

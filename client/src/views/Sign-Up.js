@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import splashbg from '../assets/images/splashbg.jpg';
 import GoogleLogin from 'react-google-login';
 
-class Login extends Component{
+
+
+class Signup extends Component{
 
     constructor(props){
         super(props);
@@ -29,25 +31,15 @@ class Login extends Component{
 		return (
       <Background>
         <Cta className="container">
-          <h1>Shopalot</h1>
-          <p>LOGIN</p>
-          <GoogleLogin
-          clientId="733567949180-mf5n6savupomp0l3u8pigrll92rf8mkh.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          />
           
-          <button>Login with Email</button>
-          <p>Don't have a login?</p>
-          <a href="/signup">Sign up with us!</a>
+          <button>Sign-Up</button>
         </Cta>
       </Background>
 		);
 	}
 }
 
-export default Login;
+export default Signup;
 
 const Background = styled.div`
   background: url(${splashbg}) no-repeat center center fixed;

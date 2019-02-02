@@ -16,6 +16,9 @@ const db = require('./config/mongoose');
 // routes
 const items = require('./routes/api/items');
 app.use('/api/items', items);
+// user route
+const users = require('./routes/api/signin');
+app.use('/api/signin', users);
 
 // serve static assets (build) if in production
 if (process.env.NODE_ENV === 'production') {
