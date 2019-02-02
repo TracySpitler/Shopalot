@@ -1,23 +1,45 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import splashbg from '../assets/images/splashbg.jpg';
+import GoogleLogin from 'react-google-login';
 
-class Splash extends Component{
+
+
+class Signup extends Component{
+
+    constructor(props){
+        super(props);
+        this.stats={
+            redirect: false
+        }
+        this.signup = this.signup.bind(this);
+    }
+
+    signup(res, type){
+
+
+    }
+
+
 	render(){
+
+        const responseGoogle = (response) =>{
+            console.log(response);
+            this.signup(response, 'google')
+        }
+
 		return (
       <Background>
         <Cta className="container">
-          <h1>Shopalot</h1>
-          <p>Who said shopping couldn&#39;t be easy?</p>
-          <p>Experience the best way to shop, fast. </p>
-          <button>Get Started</button>
+          
+          <button>Sign-Up</button>
         </Cta>
       </Background>
 		);
 	}
 }
 
-export default Splash;
+export default Signup;
 
 const Background = styled.div`
   background: url(${splashbg}) no-repeat center center fixed;
