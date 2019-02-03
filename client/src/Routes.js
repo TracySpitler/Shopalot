@@ -3,11 +3,12 @@ import {
    Route, Switch
 } from 'react-router-dom';
 import Splash from './views/Splash';
-import ShoppingList from './components/ShoppingList';
+import Browse from './components/Browse';
 import NotFound from './components/NotFound';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import ItemInfo from './components/ItemInfo';
 
 const AppRouter = () => {
   return (
@@ -15,9 +16,8 @@ const AppRouter = () => {
 
   <Switch>
      
-       
         <Route path="/" exact component={Splash} />
-        <Route path="/shoppinglist" component={ShoppingList} />
+        <Route path="/shoppinglist" component={Browse} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/profile" component={Profile} />
