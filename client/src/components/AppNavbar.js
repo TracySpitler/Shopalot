@@ -8,7 +8,7 @@ class AppNavbar extends Component {
     isOpen: false
 
   }
-    
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
@@ -35,7 +35,7 @@ class AppNavbar extends Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/login">
+                <NavLink href="/signup">
                   Log in / Sign up
                 </NavLink>
               </NavItem>

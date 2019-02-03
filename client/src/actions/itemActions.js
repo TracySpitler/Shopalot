@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
+import {  GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, GET_ITEM_INFO } from './types';
 
 // action to GET_ITEMS from the server
 export const getItems = () => dispatch => {
@@ -36,6 +36,19 @@ export const addItem = (item) => dispatch => {
       dispatch({
         type: ADD_ITEM,
         // send the added item
+        payload: res.data
+      })
+    );
+};
+
+// action to GET_ITEM from the server by _id
+export const getItemInfo = (id) => dispatch => {
+  axios
+    .get(`/api/items/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_ITEM_INFO,
+        // send all items
         payload: res.data
       })
     );
