@@ -7,15 +7,17 @@ import Login from './views/Login';
 import Signup from './views/Login';
 import Splash from './views/Splash';
 import ShoppingList from './components/ShoppingList';
-import NotFound from './components/NotFound'
+import NotFound from './components/NotFound';
+import Browse from './components/Browse';
+import ItemInfo from './components/ItemInfo';
 
 const AppRouter = () => {
   return <Switch>
       <Route path="/" exact component={Splash} />
-      <Route path="/shoppinglist" component={ShoppingList} />
+      <Route path="/shoppinglist" component={Browse} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-      <Route path="*" component={NotFound} />
+      <Route path="/:id" component={ItemInfo} />
     </Switch>
 };
 

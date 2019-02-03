@@ -58,3 +58,17 @@ img.404 {
   color: #FFF !important;
   text-decoration: none;
 }
+
+.btn {
+  background-color: #350074;
+  color: white;
+}
+
+.cards {
+   display: flex;
+   justify-content: space-between;
+}
+
+img {
+  width: 400px;
+}
