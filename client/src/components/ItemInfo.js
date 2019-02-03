@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getItemInfo } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow, MDBMask, MDBIcon, MDBView } from 'mdbreact';
+import styled from 'styled-components';
 
 class ItemInfo extends Component{
   // load the list from store.js
@@ -26,10 +27,7 @@ class ItemInfo extends Component{
 
         <CSSTransition key={items._id} timeout={500} classNames="fade">
 
-          <MDBCard
-          className="my-5 px-5 mx-auto"
-          style={{ fontWeight: 300, maxWidth: "90%" }}
-          >
+          <StyledMDBCard>
             <MDBCardBody style={{ paddingTop: 0 }}>
               <h2 className="h1-responsive font-weight-bold my-5 text-center">
                 A Closer Look at {items.name}
@@ -42,9 +40,9 @@ class ItemInfo extends Component{
                   }}>
                     <MDBView hover rounded className="z-depth-1-half mb-4">
                       <img
-                        className="img-fluid"
                         src={items.imagePath}
                         alt={items.name}
+                        style={{width: "100%"}}
                       />
                       <a href="#!">
                         <MDBMask overlay="white-slight" className="waves-light" />
@@ -196,7 +194,7 @@ class ItemInfo extends Component{
                 </MDBCol>
               </MDBRow>
             </MDBCardBody>
-          </MDBCard>
+          </StyledMDBCard>
 
         </CSSTransition>
 
@@ -215,3 +213,14 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getItemInfo })(ItemInfo);
+
+const StyledMDBCard = styled(MDBCard)`
+  margin: 20px auto;
+  padding: 0 40px;
+  @media all and (max-width: 736px) { 
+    padding: 0 20px;
+  }
+  @media all and (max-width: 436px) { 
+    padding: 0;
+  }
+`

@@ -62,6 +62,7 @@ class ItemModal extends Component {
         >Add Item</Button>
 
         <Modal
+          style={{marginTop: '60px'}}
           isOpen={this.state.modal}
           toggle={this.toggle}>
 

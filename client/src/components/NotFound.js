@@ -6,7 +6,7 @@ import PageNotFound from '../assets/images/ErrorPage404.jpg';
 const NotFound = () => (
   <div>
     <div className="container">
-      <img alt='404 Not Found' className='404' src={PageNotFound} style={{width: '100%', display: 'block', margin: 'auto'}} />
+      <img alt='404 Not Found' className='notfound' src={PageNotFound} style={{width: '100%', display: 'block', margin: 'auto'}} />
       <Button
         className="home-btn"
       ><Link to="/">Go Home</Link></Button>

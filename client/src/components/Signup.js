@@ -8,7 +8,7 @@ const FormPage = () => {
         <CSSTransition key="" timeout={500} classNames="fade">
         <MDBContainer>
           <MDBRow>
-            <MDBCol md="6">
+            <MDBCol sm="12" md="8" lg="6" className="mx-auto">
               <MDBCard>
                 <MDBCardBody className="mx-4">
                   <div className="text-center">
