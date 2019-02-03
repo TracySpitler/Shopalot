@@ -7,7 +7,9 @@ class Splash extends Component{
    render(){
 
       return (
+      
         <Background>
+           
         <Cta className="container">
           <h1>Shopalot</h1>
           <p>Who said shopping couldn&#39;t be easy?</p>
