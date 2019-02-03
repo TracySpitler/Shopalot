@@ -16,7 +16,7 @@ class Browse extends Component{
 
   // delete function
   onMoreInfo = (id) => {
-    let path = '/' + id;
+    let path = '/item/' + id;
     this.props.history.push(path);
   }
 
