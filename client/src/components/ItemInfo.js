@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Container } from 'reactstrap';
+import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getItemInfo } from '../actions/itemActions';
 import PropTypes from 'prop-types';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCardFooter, MDBCol, MDBRow, MDBMask, MDBIcon, MDBView } from 'mdbreact';
-
-import { Router, Route, browserHistory, IndexRoute} from 'react-router'
-import ItemModal from './ItemModal';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow, MDBMask, MDBIcon, MDBView } from 'mdbreact';
 
 class ItemInfo extends Component{
   // load the list from store.js
