@@ -14,7 +14,6 @@ const AppRouter = () => {
       <Route path="/" exact component={Splash} />
       <Route path="/shoppinglist" component={ShoppingList} />
       <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
       <Route path="*" component={NotFound} />
     </Switch>
 };
