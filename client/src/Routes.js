@@ -4,7 +4,6 @@ import {
   Switch,
 } from 'react-router-dom';
 import Login from './views/Login';
-import Signup from './views/Login';
 import Splash from './views/Splash';
 import ShoppingList from './components/ShoppingList';
 import NotFound from './components/NotFound';
@@ -16,8 +15,12 @@ const AppRouter = () => {
       <Route path="/" exact component={Splash} />
       <Route path="/shoppinglist" component={Browse} />
       <Route path="/login" component={Login} />
+<<<<<<< HEAD
       <Route path="/signup" component={Signup} />
       <Route path="/:id" component={ItemInfo} />
+=======
+      <Route path="*" component={NotFound} />
+>>>>>>> fb1c9b5ba4cb5c94b5cf56d3ea266262ff533501
     </Switch>
 };
 
