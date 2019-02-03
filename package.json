@@ -30,7 +30,6 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "jwt-decode": "^2.2.0",
-    "mdbreact": "^4.9.0",
     "mongoose": "^5.4.5"
   },
   "devDependencies": {
