@@ -20,6 +20,10 @@ app.use('/api/items', items);
 // user route
 const Users = require('./routes/api/users');
 app.use('/api/users', Users);
+// google route
+const passport = require("passport");
+app.use(passport.initialize());
+require("./config/passport");
 
 // serve static assets (build) if in production
 if (process.env.NODE_ENV === 'production') {
