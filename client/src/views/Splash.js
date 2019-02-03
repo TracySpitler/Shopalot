@@ -41,4 +41,12 @@ const Cta = styled.div`
     border-radius: 5px;
     cursor: pointer;
   }
+  @media all and (max-width: 736px) { 
+    h1 {
+      font-size: 52px;
+    }
+    p {
+      font-size: 20px;
+    }
+   }
 `
