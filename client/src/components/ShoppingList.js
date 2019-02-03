@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../actions/itemActions';
 import PropTypes from 'prop-types';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 import ItemModal from './ItemModal';
 
@@ -26,7 +27,7 @@ class ShoppingList extends Component{
       <Container>
         <ItemModal />
 
-        <ListGroup>
+        <ListGroup className="card-deck">
           <TransitionGroup className="shopping-list">
             {items.map(({_id, name, price, description, imagePath}) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
