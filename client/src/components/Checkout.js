@@ -11,10 +11,6 @@ class Checkout extends Component{
   componentDidMount() {
     this.props.getItems();
     this.props.purchaseCart();
-
-    this.state = {
-      name: ''
-    }
   }
 
   getSubtotal() {
@@ -41,14 +37,14 @@ class Checkout extends Component{
   onSubmit = (e) => {
     e.preventDefault();
 
-    const newPurchase = {
-      email: this.state.email,
-      total: this.getTotal(this.getSubtotal()),
-    };
-
-    // purchase items in cart
-    this.props.purchaseCart(newPurchase);
-    console.log(this.props.stripe);
+    // const newPurchase = {
+    //   email: this.state.email,
+    //   total: this.getTotal(this.getSubtotal()),
+    // };
+    //
+    // // purchase items in cart
+    // this.props.purchaseCart(newPurchase);
+    // console.log(this.props.stripe);
   }
 
   render(){
