@@ -5,7 +5,6 @@ import {
 import Splash from './views/Splash';
 
 import Browse from './components/Browse';
-import NotFound from './components/NotFound';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
