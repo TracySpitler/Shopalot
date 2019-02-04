@@ -79,11 +79,6 @@ class AppNavbar extends Component {
                       </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/shoppinglist" className="nav-link">
-                            Shopping List
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
                         <NavLink href="https://github.com/TracySpitler/Shopalot" className="nav-link">
                             Github
                         </NavLink>
