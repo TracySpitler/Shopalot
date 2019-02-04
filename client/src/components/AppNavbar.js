@@ -16,7 +16,7 @@ class AppNavbar extends Component {
     isOpen: false
 
   }
-    
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
@@ -56,6 +56,7 @@ class AppNavbar extends Component {
       )
 
     return (
+
         <div>
           <Navbar style={{backgroundColor: '#350074'}} dark expand="sm">
             <Container>
@@ -83,8 +84,10 @@ class AppNavbar extends Component {
                 </Container>
             </Navbar>
         </div>
+
     );
   }
 }
 
 export default withRouter(AppNavbar)
+

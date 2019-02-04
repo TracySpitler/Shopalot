@@ -46,6 +46,7 @@ const Cta = styled.div`
     border-radius: 5px;
     cursor: pointer;
   }
+<<<<<<< HEAD
   a:link, a:visited {
     background-color: #350074;
     color: white;
@@ -58,4 +59,14 @@ const Cta = styled.div`
   a:hover, a:hover {
     background-color: #6D538E;
   }
+
+  @media all and (max-width: 736px) { 
+    h1 {
+      font-size: 52px;
+    }
+    p {
+      font-size: 20px;
+    }
+   }
 `
+

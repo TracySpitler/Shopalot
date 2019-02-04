@@ -16,7 +16,7 @@ class Browse extends Component{
 
   // delete function
   onMoreInfo = (id) => {
-    let path = '/' + id;
+    let path = '/item/' + id;
     this.props.history.push(path);
   }
 
@@ -39,9 +39,9 @@ class Browse extends Component{
         <TransitionGroup className="card-deck">
           {items.map(({_id, name, price, description, imagePath}) => (
             <CSSTransition key={_id} timeout={500} classNames="fade">
-              <MDBCol className="mb-4">
-                <MDBCard style={{ width: "20rem" }}>
-                  <MDBCardImage className="img-fluid" src={imagePath} alt={name} waves />
+              <MDBCol lg="4" md="6" sm="12" className="mb-4">
+                <MDBCard style={{ width: "100%" }}>
+                  <MDBCardImage  style={{ width: "100%" }} className="img-fluid" src={imagePath} alt={name} waves />
                   <MDBCardBody>
                     <MDBCardTitle>{name}</MDBCardTitle>
                     <MDBCardText>

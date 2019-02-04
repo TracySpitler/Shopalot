@@ -62,6 +62,7 @@ class ItemModal extends Component {
         >Add Item</Button>
 
         <Modal
+          style={{marginTop: '60px'}}
           isOpen={this.state.modal}
           toggle={this.toggle}>
 
@@ -77,9 +78,12 @@ class ItemModal extends Component {
                 <Input
                   type="text"
                   name="name"
+                  aria-label="Item Name"
+                  aria-required="true"
                   id="name"
                   placeholder="iPhone X"
                   onChange={this.onChange.bind(this)}
+                  required
                 />
               </FormGroup>
 
@@ -87,10 +91,13 @@ class ItemModal extends Component {
               <FormGroup>
                 <Label for="price">Price</Label>
                 <Input
+                  aria-label="Price"
+                  aria-required="true"
                   type="number"
                   name="price"
                   id="price"
                   placeholder="749"
+                  required
                   onChange={this.onChange.bind(this)}
                 />
               </FormGroup>
@@ -99,6 +106,7 @@ class ItemModal extends Component {
               <FormGroup>
                 <Label for="imagePath">Image URL</Label>
                 <Input
+                  aria-label="Image URL"
                   type="text"
                   name="imagePath"
                   id="imagePath"
@@ -111,6 +119,7 @@ class ItemModal extends Component {
               <FormGroup>
                 <Label for="description">Description</Label>
                 <Input
+                  aria-label="Description"
                   type="textarea"
                   name="description"
                   id="description"
