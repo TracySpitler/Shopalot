@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// EXAMPLE STRING: mongodb://username:password@hostname:port/database
+// EXAMPLE STRING: mongodb://email:password@hostname:port/database
 mongoose.connect('mongodb://'+process.env.MONGO_HOST+'/'+process.env.MONGO_DATABASE, { useNewUrlParser: true });
 
 // Get the default connection

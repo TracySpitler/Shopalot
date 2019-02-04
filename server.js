@@ -1,40 +1,93 @@
-// include dependencies
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const path = require('path');
+// Loading evnironmental variables here
+if (process.env.NODE_ENV !== 'production') {
+	console.log('loading dev environments')
+	require('dotenv').config()
+}
+require('dotenv').config()
 
-// initialize express
-const app = express();
+const express = require('express')
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const dbConnection = require('./config/mongoose') // loads our connection to the mongo database
+const passport = require('./passport')
+const app = express()
+const PORT = process.env.PORT || 8080
 
-// middleware
-app.use(bodyParser.json());
+// ===== Middleware ====
+app.use(morgan('dev'))
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+)
+app.use(bodyParser.json())
+app.use(
+	session({
+		secret: process.env.APP_SECRET || 'this is the default passphrase',
+		store: new MongoStore({ mongooseConnection: dbConnection }),
+		resave: false,
+		saveUninitialized: false
+	})
+)
 
-// connect to the database
-const db = require('./config/mongoose');
+// ===== Passport ====
+app.use(passport.initialize())
+app.use(passport.session()) // will call the deserializeUser
 
-// routes
-const items = require('./routes/api/items');
-app.use('/api/items', items);
-// user route
-const Users = require('./routes/api/users');
-app.use('/api/users', Users);
-// google route
-const passport = require("passport");
-app.use(passport.initialize());
-require("./config/passport");
+// ===== testing middleware =====
+// app.use(function(req, res, next) {
+// 	console.log('===== passport user =======')
+// 	console.log(req.session)
+// 	console.log(req.user)
+// 	console.log('===== END =======')
+// 	next()
+// })
+// testing
+// app.get(
+// 	'/auth/google/callback',
+// 	(req, res, next) => {
+// 		console.log(`req.user: ${req.user}`)
+// 		console.log('======= /auth/google/callback was called! =====')
+// 		next()
+// 	},
+// 	passport.authenticate('google', { failureRedirect: '/login' }),
+// 	(req, res) => {
+// 		res.redirect('/')
+// 	}
+// )
 
-// serve static assets (build) if in production
+// ==== if its production environment!
 if (process.env.NODE_ENV === 'production') {
-  // set static folder
-  app.use(express.static('client/build'));
+	const path = require('path')
+	console.log('YOU ARE IN THE PRODUCTION ENV')
+// set static folder
+app.use(express.static('build'));
 
-  //load index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
+//load index.html
+if (process.env.NODE_ENV === 'production') {
+	const path = require('path')
+	console.log('YOU ARE IN THE PRODUCTION ENV')
+	app.use('/', express.static(path.join(__dirname, '../build/')))
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, '../build/'))
+	})
+}
 }
 
-// export the app
-module.exports = app;
+/* Express app ROUTING */
+app.use('/auth', require('./auth'))
+
+// ====== Error handler ====
+app.use(function(err, req, res, next) {
+	console.log('====== ERROR =======')
+	console.error(err.stack)
+	res.status(500)
+})
+
+// ==== Starting Server =====
+app.listen(PORT, () => {
+	console.log(`App listening on PORT: ${PORT}`)
+})
+

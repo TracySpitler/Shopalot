@@ -20,7 +20,6 @@ const AppRouter = () => {
         <Route path="/shoppinglist" component={Browse} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <Route path="/auth/google" component={Login} />
         <Route path="/profile" component={Profile} />
         <Route path="/:id" component={ItemInfo} />
         <Route path="*" component={NotFound} />

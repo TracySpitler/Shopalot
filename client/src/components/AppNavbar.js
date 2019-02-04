@@ -1,90 +1,158 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
-import { Collapse, Container, NavbarToggler, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import axios from 'axios'
+import { withRouter, Route, Link } from 'react-router-dom'
+import Login from './Login'
+import Register from './Register'
+import Header from './Header'
+import Splash from '../views/Splash'
+
+//     logOut (e) {
+//       e.preventDefault()
+//       localStorage.removeItem('usertoken')
+//       this.props.history.push(`/`)
+//   }
+
+
+//   state = {
+
+//     isOpen: false
+
+//   }
+    
+//   toggle = () => {
+//     this.setState({
+//       isOpen: !this.state.isOpen
+//     });
+//   }
+
+
+  const DisplayLinks = props => {
+	if (props.loggedIn) {
+		return (
+			<nav className="navbar">
+				<ul className="nav">
+					<li className="nav-item">
+						<Link to="/" className="nav-link">
+							Home
+						</Link>
+					</li>
+					<li>
+						<Link to="#" className="nav-link" onClick={props._logout}>
+							Logout
+						</Link>
+					</li>
+				</ul>
+			</nav>
+		)
+	} else {
+		return (
+			<nav className="navbar">
+				<ul className="nav">
+					<li className="nav-item">
+						<Link to="/" className="nav-link">
+							Home
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link to="/login" className="nav-link">
+							login
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link to="/register" className="nav-link">
+							Register
+						</Link>
+					</li>
+				</ul>
+			</nav>
+		)
+    }
+}
 
 class AppNavbar extends Component {
+	constructor() {
+		super()
+		this.state = {
+			loggedIn: false,
+			user: null
+		}
+		this._logout = this._logout.bind(this)
+		this._login = this._login.bind(this)
+	}
+	componentDidMount() {
+		axios.get('/auth/user').then(response => {
+			console.log(response.data)
+			if (!!response.data.user) {
+				console.log('THERE IS A USER')
+				this.setState({
+					loggedIn: true,
+					user: response.data.user
+				})
+			} else {
+				this.setState({
+					loggedIn: false,
+					user: null
+				})
+			}
+		})
+	}
 
-    logOut (e) {
-      e.preventDefault()
-      localStorage.removeItem('usertoken')
-      this.props.history.push(`/`)
-  }
+	_logout(event) {
+		event.preventDefault()
+		console.log('logging out')
+		axios.post('/auth/logout').then(response => {
+			console.log(response.data)
+			if (response.status === 200) {
+				this.setState({
+					loggedIn: false,
+					user: null
+				})
+			}
+		})
+	}
 
+	_login(email, password) {
+		axios
+			.post('/auth/login', {
+				email,
+				password
+			})
+			.then(response => {
+				console.log(response)
+				if (response.status === 200) {
+					// update the state
+					this.setState({
+						loggedIn: true,
+						user: response.data.user
+					})
+				}
+			})
+	}
 
-  state = {
-
-    isOpen: false
-
-  }
-    
-  toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-
-  render(){
-
-        const loginRegLink = (
-          <ul className="navbar-nav">
-              <li className="nav-item">
-                  <NavLink href="/login" className="nav-link">
-                      Login
-                  </NavLink>
-              </li>
-              <li className="nav-item">
-                  <NavLink href="/register" className="nav-link">
-                      Register
-                  </NavLink>
-              </li>
-          </ul>
-      )
-
-      const userLink = (
-          <ul className="navbar-nav">
-              <li className="nav-item">
-                  <NavLink href="/profile" className="nav-link">
-                      User
-                  </NavLink>
-              </li>
-              <li className="nav-item">
-                  <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
-                      Logout
-                  </a>
-              </li>
-          </ul>
-      )
-
-    return (
-        <div>
-          <Navbar style={{backgroundColor: '#350074'}} dark expand="sm">
-            <Container>
-                <NavbarBrand href="/">
-                  
-                        Shopalot
-                  
-                </NavbarBrand>
-                <NavbarToggler onClick={this.toggle}></NavbarToggler>
-                <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink href="/shoppinglist" className="nav-link">
-                            Shopping List
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="https://github.com/TracySpitler/Shopalot" className="nav-link">
-                            Github
-                        </NavLink>
-                    </NavItem>
-                </Nav>
-                    {localStorage.usertoken ? userLink : loginRegLink}
-                    </Collapse>
-                </Container>
-            </Navbar>
-        </div>
-    );
-  }
+	render() {
+		return (
+			<div >
+				<h1>This is the main App component</h1>
+				<Header user={this.state.user} />
+				{/* LINKS to our different 'pages' */}
+				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+				{/*  ROUTES */}
+				{/* <Route exact path="/" component={Home} /> */}
+				<Route exact path="/" render={() => <Splash user={this.state.user} />} />
+				<Route
+					exact
+					path="/login"
+					render={() =>
+						<Login
+							_login={this._login}
+							_googleSignin={this._googleSignin}
+						/>}
+				/>
+				<Route exact path="/register" component={Register} />
+				{/* <LoginForm _login={this._login} /> */}
+			</div>
+		)
+    }
 }
 
 export default withRouter(AppNavbar)

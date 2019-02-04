@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
-import { register } from './UserFunctions'
+import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 class Register extends Component {
     constructor() {
         super()
         this.state = {
-            first_name: '',
-            last_name: '',
+            
             email: '',
-            password: '',
+			password: '',
+			confirmPassword: '',
+			redirectTo: null
+
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -21,19 +24,29 @@ class Register extends Component {
     onSubmit (e) {
         e.preventDefault()
 
-        const user = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
+        // TODO - validate!
+		axios
+        .post('/register', {
             email: this.state.email,
             password: this.state.password
-        }
-
-        register(user).then(res => {
-            this.props.history.push(`/login`)
+        })
+        .then(response => {
+            console.log(response)
+            if (!response.data.errmsg) {
+                console.log('youre good')
+                this.setState({
+                    redirectTo: '/login'
+                })
+            } else {
+                console.log('duplicate')
+            }
         })
     }
 
     render () {
+        if (this.state.redirectTo) {
+			return <Redirect to={{ pathname: this.state.redirectTo }} />
+		}
         return (
             <div className="container">
                 <div className="row">
