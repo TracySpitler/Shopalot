@@ -5,19 +5,34 @@ const Schema = mongoose.Schema;
 // Create Schema
 const UserSchema = new Schema({
 
-    name: {
-      type: String,
-      required: true
+
+    first_name: {
+        type: String,
+        default: '',
+        required: true
     },
-    username: {
-      type: String,
-      required: true,
-      unique: true
+    last_name: {
+        type: String,
+        default: ''
+    },
+    email: {
+        type: String,
+        default: '',
+        required: true
     },
     password: {
-      type: String,
-      required: true
+        type: String,
+        default: '',
+        required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
+
+
 });
 
-module.exports = User = mongoose.model('user', UserSchema);
+
+module.exports = User = mongoose.model('User', UserSchema);
+
