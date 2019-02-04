@@ -13,7 +13,7 @@ class Splash extends Component{
           <h1>Shopalot</h1>
           <p>Who said shopping couldn&#39;t be easy?</p>
           <p>Experience the best way to shop, fast. </p>
-          <a href="/login">Get Started</a>
+          <button>Get Started</button>
         </Cta>
         </Background>
         
