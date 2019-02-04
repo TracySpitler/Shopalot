@@ -12,7 +12,7 @@ class Checkout extends Component{
     this.props.getItems();
     this.props.purchaseCart();
 
-    this.setState = {
+    this.state = {
       name: ''
     }
   }
