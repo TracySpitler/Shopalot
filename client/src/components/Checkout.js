@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
+import { getStripe, purchaseCart } from '../actions/stripeActions';
 import PropTypes from 'prop-types';
 import { MDBCard, MDBCardBody, MDBCol, MDBRow } from 'mdbreact';
 
@@ -9,6 +10,11 @@ class Checkout extends Component{
   // load the list from store.js
   componentDidMount() {
     this.props.getItems();
+    this.props.purchaseCart();
+
+    this.state = {
+      name: ''
+    }
   }
 
   getSubtotal() {
@@ -26,8 +32,28 @@ class Checkout extends Component{
     return total;
   }
 
+  // function for input change
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  // add item from modal
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    const newPurchase = {
+      email: this.state.email,
+      total: this.getTotal(this.getSubtotal()),
+    };
+
+    // purchase items in cart
+    this.props.purchaseCart(newPurchase);
+    console.log(this.props.stripe);
+  }
+
   render(){
     const { items } = this.props.item;
+    const { stripe } = this.props.stripe;
     return (
       <Container>
           <section className="my-5">
@@ -38,7 +64,7 @@ class Checkout extends Component{
 
                     <div className="order-md-1">
                       <h4 className="mb-3">Billing address</h4>
-                      <form className="needs-validation">
+                      <form id="stripe-form" onSubmit={this.onSubmit}>
                         <div className="row">
                           <div className="col-md-6 mb-3">
                             <label htmlFor="firstName">First name</label>
@@ -49,7 +75,7 @@ class Checkout extends Component{
                           </div>
                           <div className="col-md-6 mb-3">
                             <label htmlFor="lastName">Last name</label>
-                            <input type="text" className="form-control" id="lastName" placeholder="" defaultValue="" required/>
+                            <input type="text" className="form-control" id="lastName" placeholder="" defaultValue="" required=''/>
                             <div className="invalid-feedback">
                               Valid last name is required.
                             </div>
@@ -62,7 +88,7 @@ class Checkout extends Component{
                             <div className="input-group-prepend">
                               <span className="input-group-text">@</span>
                             </div>
-                            <input type="email" className="form-control" id="email" placeholder="Email" required/>
+                            <input name="email" onChange={this.onChange.bind(this)} type="email" className="form-control" id="email" placeholder="Email" required/>
                             <div className="invalid-feedback" style={{ width: '100%' }}>
                               Your email is required.
                             </div>
@@ -71,7 +97,7 @@ class Checkout extends Component{
 
                         <div className="mb-3">
                           <label htmlFor="address">Address</label>
-                          <input type="text" className="form-control" id="address" placeholder="1234 Main St" required/>
+                          <input type="text" className="form-control" id="address" placeholder="1234 Main St" required=''/>
                           <div className="invalid-feedback">
                             Please enter your shipping address.
                           </div>
@@ -85,7 +111,7 @@ class Checkout extends Component{
                         <div className="row">
                           <div className="col-md-5 mb-3">
                             <label htmlFor="country">Country</label>
-                            <select className="custom-select d-block w-100" id="country" required>
+                            <select className="custom-select d-block w-100" id="country" required=''>
                               <option defaultValue="">Choose...</option>
                               <option>United States</option>
                             </select>
@@ -95,7 +121,7 @@ class Checkout extends Component{
                           </div>
                           <div className="col-md-4 mb-3">
                             <label htmlFor="state">State</label>
-                            <select className="custom-select d-block w-100" id="state" required>
+                            <select className="custom-select d-block w-100" id="state" required=''>
                               <option defaultValue="">Choose...</option>
                               <option defaultValue="AL">Alabama</option>
                             	<option defaultValue="AK">Alaska</option>
@@ -155,7 +181,7 @@ class Checkout extends Component{
                           </div>
                           <div className="col-md-3 mb-3">
                             <label htmlFor="zip">Zip</label>
-                            <input type="text" className="form-control" id="zip" placeholder="" required/>
+                            <input type="text" className="form-control" id="zip" placeholder="" required=''/>
                             <div className="invalid-feedback">
                               Zip code required.
                             </div>
@@ -176,22 +202,22 @@ class Checkout extends Component{
 
                         <div className="d-block my-3">
                           <div className="custom-control custom-radio">
-                            <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" required/>
+                            <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" required=''/>
                             <label className="custom-control-label" htmlFor="credit">Credit card</label>
                           </div>
                           <div className="custom-control custom-radio">
-                            <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" required/>
+                            <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" required=''/>
                             <label className="custom-control-label" htmlFor="debit">Debit card</label>
                           </div>
                           <div className="custom-control custom-radio">
-                            <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" required/>
+                            <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" required=''/>
                             <label className="custom-control-label" htmlFor="paypal">Paypal</label>
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-md-6 mb-3">
                             <label htmlFor="cc-name">Name on card</label>
-                            <input type="text" className="form-control" id="cc-name" placeholder="" required/>
+                            <input type="text" className="form-control" id="cc-name" placeholder="" required=''/>
                             <small className="text-muted">Full name as displayed on card</small>
                             <div className="invalid-feedback">
                               Name on card is required
@@ -199,7 +225,7 @@ class Checkout extends Component{
                           </div>
                           <div className="col-md-6 mb-3">
                             <label htmlFor="cc-number">Credit card number</label>
-                            <input type="text" className="form-control" id="cc-number" placeholder="" required/>
+                            <input type="text" className="form-control" id="cc-number" placeholder="" required=''/>
                             <div className="invalid-feedback">
                               Credit card number is required
                             </div>
@@ -229,14 +255,14 @@ class Checkout extends Component{
                           </div>
                           <div className="col-md-3 mb-3">
                             <label htmlFor="cc-expiration">Year</label>
-                            <input type="number" min="2018" max="2099" step="1" className="form-control" id="cc-expiration-month" placeholder="2018" required/>
+                            <input type="number" min="2018" max="2099" step="1" className="form-control" id="cc-expiration-month" placeholder="2018" required=''/>
                             <div className="invalid-feedback">
                               Expiration year is required
                             </div>
                           </div>
                           <div className="col-md-3 mb-3">
                             <label htmlFor="cc-expiration">CVV</label>
-                            <input type="text" className="form-control" min="0" pattern="^\d{1,3}$" maxLength="3" id="cc-cvv" placeholder="" required/>
+                            <input type="text" className="form-control" min="0" pattern="^\d{1,3}$" maxLength="3" id="cc-cvv" placeholder="" required=''/>
                             <div className="invalid-feedback">
                               Security code required
                             </div>
@@ -244,7 +270,7 @@ class Checkout extends Component{
                         </div>
                         <hr className="mb-4"/>
                         <div className="input-group justify-content-between">
-                          <span><small>Total:</small><h3 className="text-success">${this.getTotal(this.getSubtotal())}</h3></span>
+                          <span><small>Total:</small><h3 id="total" className="text-success">${this.getTotal(this.getSubtotal())}</h3></span>
                           <div className="input-group-append col-md-6">
                             <button className="btn btn-success btn-block float-right" type="submit">Purchase Items</button>
                             </div>
@@ -265,7 +291,7 @@ class Checkout extends Component{
                 <hr />
                 <ul className="list-group mb-3">
 
-                
+
                   {items.map(({_id, name, price, description, imagePath}) => (
                     <li key={_id} className="list-group-item d-flex justify-content-between lh-condensed">
                       <div>
@@ -306,11 +332,15 @@ class Checkout extends Component{
 
 Checkout.propTypes = {
   getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  getStripe: PropTypes.func.isRequired,
+  purchaseCart: PropTypes.func,
+  stripe: PropTypes.object,
 }
 
 const mapStateToProps = (state) => ({
-  item: state.item
+  item: state.item,
+  stripe: state.stripe
 });
 
-export default connect(mapStateToProps, { getItems })(Checkout);
+export default connect(mapStateToProps, { getItems, getStripe, purchaseCart })(Checkout);
