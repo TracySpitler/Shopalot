@@ -15,7 +15,7 @@ const ItemSchema = new Schema({
     },
     imagePath: {
         type: String,
-        default: "https://www.bestfunnies.com/wp-content/uploads/2012/10/Funny-Shopping-01.jpg",
+        default: "https://picsum.photos/400/200/?random",
         required: true,
     },
     description: {

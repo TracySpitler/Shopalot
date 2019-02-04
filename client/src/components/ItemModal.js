@@ -46,7 +46,7 @@ class ItemModal extends Component {
     this.props.addItem(newItem);
 
     // reset default image
-    this.setState({ imagePath: 'https://www.bestfunnies.com/wp-content/uploads/2012/10/Funny-Shopping-01.jpg' })
+    this.setState({ imagePath: 'https://picsum.photos/400/200/?random' })
 
     // close modal
     this.toggle();

@@ -26,6 +26,9 @@ const passport = require("passport");
 app.use(passport.initialize());
 require("./config/passport");
 
+const stripe = require('./routes/api/stripe');
+app.use('/api/stripe', stripe);
+
 
 // serve static assets (build) if in production
 if (process.env.NODE_ENV === 'production') {

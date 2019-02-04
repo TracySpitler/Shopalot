@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getItems } from '../actions/itemActions';
+import { getStripe, purchaseCart } from '../actions/stripeActions';
 import PropTypes from 'prop-types';
 import { MDBCard, MDBCardBody, MDBCol, MDBRow } from 'mdbreact';
 
@@ -9,6 +10,7 @@ class Checkout extends Component{
   // load the list from store.js
   componentDidMount() {
     this.props.getItems();
+    this.props.purchaseCart();
   }
 
   getSubtotal() {
@@ -26,8 +28,28 @@ class Checkout extends Component{
     return total;
   }
 
+  // function for input change
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  // add item from modal
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    // const newPurchase = {
+    //   email: this.state.email,
+    //   total: this.getTotal(this.getSubtotal()),
+    // };
+    //
+    // // purchase items in cart
+    // this.props.purchaseCart(newPurchase);
+    // console.log(this.props.stripe);
+  }
+
   render(){
     const { items } = this.props.item;
+    const { stripe } = this.props.stripe;
     return (
       <Container>
           <section className="my-5">
@@ -38,7 +60,7 @@ class Checkout extends Component{
 
                     <div className="order-md-1">
                       <h4 className="mb-3">Billing address</h4>
-                      <form className="needs-validation">
+                      <form id="stripe-form" onSubmit={this.onSubmit}>
                         <div className="row">
                           <div className="col-md-6 mb-3">
                             <label htmlFor="firstName">First name</label>
@@ -244,7 +266,7 @@ class Checkout extends Component{
                         </div>
                         <hr className="mb-4"/>
                         <div className="input-group justify-content-between">
-                          <span><small>Total:</small><h3 className="text-success">${this.getTotal(this.getSubtotal())}</h3></span>
+                          <span><small>Total:</small><h3 id="total" className="text-success">${this.getTotal(this.getSubtotal())}</h3></span>
                           <div className="input-group-append col-md-6">
                             <button className="btn btn-success btn-block float-right" type="submit">Purchase Items</button>
                             </div>
@@ -265,7 +287,7 @@ class Checkout extends Component{
                 <hr />
                 <ul className="list-group mb-3">
 
-                
+
                   {items.map(({_id, name, price, description, imagePath}) => (
                     <li key={_id} className="list-group-item d-flex justify-content-between lh-condensed">
                       <div>
@@ -306,11 +328,15 @@ class Checkout extends Component{
 
 Checkout.propTypes = {
   getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  getStripe: PropTypes.func.isRequired,
+  purchaseCart: PropTypes.func,
+  stripe: PropTypes.object,
 }
 
 const mapStateToProps = (state) => ({
-  item: state.item
+  item: state.item,
+  stripe: state.stripe
 });
 
-export default connect(mapStateToProps, { getItems })(Checkout);
+export default connect(mapStateToProps, { getItems, getStripe, purchaseCart })(Checkout);
