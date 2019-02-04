@@ -20,7 +20,6 @@ class ItemInfo extends Component{
 
   render(){
     const { items } = this.props.item;
-    console.log(items.description);
 
     return (
       <Container>

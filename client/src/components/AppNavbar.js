@@ -24,9 +24,14 @@ class AppNavbar extends Component {
           <NavbarToggler onClick={this.toggle}></NavbarToggler>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="/checkout">
+                Checkout (only visible for testing)
+              </NavLink>
+            </NavItem>
               <NavItem>
-                <NavLink href="/shoppinglist">
-                  Shopping List
+                <NavLink href="/browse">
+                  Browse
                 </NavLink>
               </NavItem>
               <NavItem>
