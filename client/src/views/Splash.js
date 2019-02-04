@@ -3,17 +3,22 @@ import styled from 'styled-components';
 import splashbg from '../assets/images/splashbg.jpg';
 
 class Splash extends Component{
-	render(){
-		return (
-      <Background>
+  
+   render(){
+
+      return (
+      
+        <Background>    
         <Cta className="container">
           <h1>Shopalot</h1>
           <p>Who said shopping couldn&#39;t be easy?</p>
           <p>Experience the best way to shop, fast. </p>
           <button>Get Started</button>
         </Cta>
-      </Background>
-		);
+        </Background>
+        
+      );  
+
 	}
 }
 
@@ -41,6 +46,20 @@ const Cta = styled.div`
     border-radius: 5px;
     cursor: pointer;
   }
+<<<<<<< HEAD
+  a:link, a:visited {
+    background-color: #350074;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+  }
+  a:hover, a:hover {
+    background-color: #6D538E;
+  }
+
   @media all and (max-width: 736px) { 
     h1 {
       font-size: 52px;
@@ -50,3 +69,4 @@ const Cta = styled.div`
     }
    }
 `
+

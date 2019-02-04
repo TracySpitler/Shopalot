@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
+import { withRouter } from 'react-router-dom'
+import { Collapse, Container, NavbarToggler, Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 class AppNavbar extends Component {
+
+    logOut (e) {
+      e.preventDefault()
+      localStorage.removeItem('usertoken')
+      this.props.history.push(`/`)
+  }
+
 
   state = {
 
@@ -16,41 +24,75 @@ class AppNavbar extends Component {
   }
 
   render(){
+
+        const loginRegLink = (
+          <ul className="navbar-nav">
+              <li className="nav-item">
+                  <NavLink href="/login" className="nav-link">
+                      Login
+                  </NavLink>
+              </li>
+              <li className="nav-item">
+                  <NavLink href="/register" className="nav-link">
+                      Register
+                  </NavLink>
+              </li>
+          </ul>
+      )
+
+      const userLink = (
+          <ul className="navbar-nav">
+              <li className="nav-item">
+                  <NavLink href="/profile" className="nav-link">
+                      User
+                  </NavLink>
+              </li>
+              <li className="nav-item">
+                  <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
+                      Logout
+                  </a>
+              </li>
+          </ul>
+      )
+
     return (
-    <div>
-      <Navbar style={{backgroundColor: '#350074'}} dark expand="sm">
-        <Container>
-          <NavbarBrand href="/">Shopalot</NavbarBrand>
-          <NavbarToggler onClick={this.toggle}></NavbarToggler>
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/checkout">
-                Checkout (only visible for testing)
-              </NavLink>
-            </NavItem>
-              <NavItem>
-                <NavLink href="/browse">
-                  Browse
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/TracySpitler/Shopalot">
-                  Github
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/signup">
-                  Log in / Sign up
-                </NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Container>
-      </Navbar>
-    </div>
+
+        <div>
+          <Navbar style={{backgroundColor: '#350074'}} dark expand="sm">
+            <Container>
+                <NavbarBrand href="/">
+                  
+                        Shopalot
+                  
+                </NavbarBrand>
+                <NavbarToggler onClick={this.toggle}></NavbarToggler>
+                <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="ml-auto" navbar>
+                <NavItem>
+                    <NavLink href="/checkout">
+                      Checkout (only visible for testing)
+                    </NavLink>
+                  </NavItem>
+                    <NavItem>
+                      <NavLink href="/browse">
+                        Browse
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink href="https://github.com/TracySpitler/Shopalot" className="nav-link">
+                            Github
+                        </NavLink>
+                    </NavItem>
+                </Nav>
+                    {localStorage.usertoken ? userLink : loginRegLink}
+                    </Collapse>
+                </Container>
+            </Navbar>
+        </div>
+
     );
   }
 }
 
-export default AppNavbar
+export default withRouter(AppNavbar)
+

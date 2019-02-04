@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router} from 'react-router-dom';
-import AppNavbar from './components/AppNavbar';
 import Routes from './Routes';
+import Navbar from './components/AppNavbar';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -12,17 +12,20 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+   
       <Provider store={store}>
+  
       <div className="App">
-
-        <AppNavbar />
-
-        <Router>
+        <Router >
+          <div>
+          <Navbar />
            <Routes />
+           </div>
         </Router>
-
       </div>
+   
       </Provider>
+     
     );
   }
 }
